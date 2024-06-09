@@ -1,5 +1,4 @@
 ﻿Imports System.IO.Ports
-Imports System.Text
 
 Public Class Form1
 
@@ -19,7 +18,7 @@ Public Class Form1
         ' Disable the Read button initially
         btnRead.Enabled = False
         disconnectBTN.Enabled = False
-
+        btnstandby.Enabled = False
         ' Populate COM ports in the combo box
         RefreshComPorts()
     End Sub
@@ -52,6 +51,7 @@ Public Class Form1
                     serialPort.WriteLine("idn")
                     disconnectBTN.Enabled = True
                     btnConnect.Enabled = False
+                    cmbPorts.Enabled = False
                 Else
                     txtOutput.AppendText("Please select a COM port" & Environment.NewLine)
                 End If
@@ -80,8 +80,6 @@ Public Class Form1
     End Sub
 
     Private Sub ProcessReceivedData(data As String)
-        txtOutput.AppendText("Received: " & data & Environment.NewLine)
-
         ' Check if the data starts with "RX:"
         If data.StartsWith("RX:") Then
             ' Remove "RX:" and split the received data into status byte and data byte
@@ -108,6 +106,7 @@ Public Class Form1
             If data.Contains("68hc58-PRO") Then
                 txtOutput.AppendText("Device identified successfully." & Environment.NewLine)
                 btnRead.Enabled = True
+                btnstandby.Enabled = True
             End If
         End If
     End Sub
@@ -124,10 +123,19 @@ Public Class Form1
         If serialPort.IsOpen Then
             serialPort.WriteLine("standby")
             serialPort.Close()
-            btnRead.Enabled = False
+            txtOutput.AppendText("Closing Serial Port" & Environment.NewLine)
         End If
         disconnectBTN.Enabled = False
         btnConnect.Enabled = True
+        btnstandby.Enabled = False
+        btnRead.Enabled = False
+        cmbPorts.Enabled = True
     End Sub
 
+    Private Sub btnstandby_Click(sender As Object, e As EventArgs) Handles btnstandby.Click
+        If serialPort.IsOpen Then
+            serialPort.WriteLine("standby")
+            txtOutput.AppendText("Standby Command Sent" & Environment.NewLine)
+        End If
+    End Sub
 End Class

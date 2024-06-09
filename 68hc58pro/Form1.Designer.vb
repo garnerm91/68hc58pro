@@ -27,6 +27,7 @@ Partial Class Form1
         txtOutput = New TextBox()
         disconnectBTN = New Button()
         cmbPorts = New ComboBox()
+        btnstandby = New Button()
         SuspendLayout()
         ' 
         ' btnConnect
@@ -73,11 +74,21 @@ Partial Class Form1
         cmbPorts.Size = New Size(109, 23)
         cmbPorts.TabIndex = 4
         ' 
+        ' btnstandby
+        ' 
+        btnstandby.Location = New Point(31, 328)
+        btnstandby.Name = "btnstandby"
+        btnstandby.Size = New Size(90, 23)
+        btnstandby.TabIndex = 5
+        btnstandby.Text = "Standby"
+        btnstandby.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(btnstandby)
         Controls.Add(cmbPorts)
         Controls.Add(disconnectBTN)
         Controls.Add(txtOutput)
@@ -94,5 +105,6 @@ Partial Class Form1
     Friend WithEvents txtOutput As TextBox
     Friend WithEvents disconnectBTN As Button
     Friend WithEvents cmbPorts As ComboBox
+    Friend WithEvents btnstandby As Button
 
 End Class
