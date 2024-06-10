@@ -1,4 +1,5 @@
 ﻿Imports System.IO.Ports
+Imports System.Threading
 
 Public Class Form1
 
@@ -101,13 +102,13 @@ Public Class Form1
                     frameBuffer.Clear()
                 End If
             End If
-        Else
-            ' Handle other responses, e.g., IDN response
-            If data.Contains("68hc58-PRO") Then
-                txtOutput.AppendText("Device identified successfully." & Environment.NewLine)
-                btnRead.Enabled = True
-                btnstandby.Enabled = True
-            End If
+        ElseIf data.Contains("68hc58-PRO") Then
+            txtOutput.AppendText("Device identified successfully." & Environment.NewLine)
+            btnRead.Enabled = True
+            btnstandby.Enabled = True
+        ElseIf data.Contains("MSG:") Then
+            txtOutput.AppendText(data & Environment.NewLine)
+
         End If
     End Sub
 
@@ -136,6 +137,18 @@ Public Class Form1
         If serialPort.IsOpen Then
             serialPort.WriteLine("standby")
             txtOutput.AppendText("Standby Command Sent" & Environment.NewLine)
+        End If
+    End Sub
+
+    Private Sub btnsend_Click(sender As Object, e As EventArgs) Handles btnsend.Click
+        ' Collect data to send in the TX format
+        If serialPort.IsOpen Then
+            serialPort.WriteLine("tx")
+            ' Wait for 100 ms to ensure the device is ready to receive data
+            Thread.Sleep(50)
+            ' Send the data as a string
+            serialPort.WriteLine(txtsend.Text)
+            txtOutput.AppendText("Sent data: " & txtsend.Text & Environment.NewLine)
         End If
     End Sub
 End Class

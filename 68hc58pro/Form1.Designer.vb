@@ -28,11 +28,15 @@ Partial Class Form1
         disconnectBTN = New Button()
         cmbPorts = New ComboBox()
         btnstandby = New Button()
+        btnsend = New Button()
+        txtsend = New TextBox()
+        Label1 = New Label()
+        Label2 = New Label()
         SuspendLayout()
         ' 
         ' btnConnect
         ' 
-        btnConnect.Location = New Point(31, 12)
+        btnConnect.Location = New Point(21, 11)
         btnConnect.Name = "btnConnect"
         btnConnect.Size = New Size(90, 23)
         btnConnect.TabIndex = 0
@@ -41,7 +45,7 @@ Partial Class Form1
         ' 
         ' btnRead
         ' 
-        btnRead.Location = New Point(31, 357)
+        btnRead.Location = New Point(21, 356)
         btnRead.Name = "btnRead"
         btnRead.Size = New Size(90, 23)
         btnRead.TabIndex = 1
@@ -50,7 +54,7 @@ Partial Class Form1
         ' 
         ' txtOutput
         ' 
-        txtOutput.Location = New Point(127, 13)
+        txtOutput.Location = New Point(117, 12)
         txtOutput.Multiline = True
         txtOutput.Name = "txtOutput"
         txtOutput.ScrollBars = ScrollBars.Both
@@ -59,7 +63,7 @@ Partial Class Form1
         ' 
         ' disconnectBTN
         ' 
-        disconnectBTN.Location = New Point(31, 41)
+        disconnectBTN.Location = New Point(21, 40)
         disconnectBTN.Name = "disconnectBTN"
         disconnectBTN.Size = New Size(90, 23)
         disconnectBTN.TabIndex = 3
@@ -69,25 +73,63 @@ Partial Class Form1
         ' cmbPorts
         ' 
         cmbPorts.FormattingEnabled = True
-        cmbPorts.Location = New Point(12, 70)
+        cmbPorts.Location = New Point(2, 84)
         cmbPorts.Name = "cmbPorts"
         cmbPorts.Size = New Size(109, 23)
         cmbPorts.TabIndex = 4
         ' 
         ' btnstandby
         ' 
-        btnstandby.Location = New Point(31, 328)
+        btnstandby.Location = New Point(21, 327)
         btnstandby.Name = "btnstandby"
         btnstandby.Size = New Size(90, 23)
         btnstandby.TabIndex = 5
         btnstandby.Text = "Standby"
         btnstandby.UseVisualStyleBackColor = True
         ' 
+        ' btnsend
+        ' 
+        btnsend.Location = New Point(686, 385)
+        btnsend.Name = "btnsend"
+        btnsend.Size = New Size(92, 23)
+        btnsend.TabIndex = 6
+        btnsend.Text = "Send"
+        btnsend.UseVisualStyleBackColor = True
+        ' 
+        ' txtsend
+        ' 
+        txtsend.Location = New Point(117, 385)
+        txtsend.Name = "txtsend"
+        txtsend.Size = New Size(563, 23)
+        txtsend.TabIndex = 7
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Location = New Point(48, 66)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(63, 15)
+        Label1.TabIndex = 8
+        Label1.Text = "Select Port"
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Location = New Point(73, 309)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(38, 15)
+        Label2.TabIndex = 9
+        Label2.Text = "Mode"
+        ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(783, 415)
+        Controls.Add(Label2)
+        Controls.Add(Label1)
+        Controls.Add(txtsend)
+        Controls.Add(btnsend)
         Controls.Add(btnstandby)
         Controls.Add(cmbPorts)
         Controls.Add(disconnectBTN)
@@ -106,5 +148,9 @@ Partial Class Form1
     Friend WithEvents disconnectBTN As Button
     Friend WithEvents cmbPorts As ComboBox
     Friend WithEvents btnstandby As Button
+    Friend WithEvents btnsend As Button
+    Friend WithEvents txtsend As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
 
 End Class
