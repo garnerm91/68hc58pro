@@ -89,8 +89,10 @@ Public Class Form1
                 Dim statusByte As String = parts(0)
                 Dim dataByte As String = parts(1)
 
-                ' Add the data byte to the frame buffer
-                frameBuffer.Add(dataByte)
+                ' Add the data byte to the frame buffer only if the status byte is not "D0" or "F0"
+                If statusByte <> "D0" AndAlso statusByte <> "F0" Then
+                    frameBuffer.Add(dataByte)
+                End If
 
                 ' Check if the status byte indicates the end of the frame
                 If statusByte = "D0" OrElse statusByte = "F0" Then
